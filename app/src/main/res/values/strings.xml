@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ProductAppKotlin</string>
+    <string name="ex_no_exception">Şu anda internet bağlatınız yoktur</string>
+    <string name="ex_common_error">Şu anda bir hata yoktur</string>
 </resources>

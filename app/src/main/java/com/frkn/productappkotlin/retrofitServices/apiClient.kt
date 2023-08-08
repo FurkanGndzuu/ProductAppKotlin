@@ -1,8 +1,12 @@
 package com.frkn.productappkotlin.retrofitServices
 
+import com.frkn.productappkotlin.Interceptors.NetworkInterceptor
+import com.frkn.productappkotlin.Interceptors.TokenInterceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class apiClient {
 
@@ -14,10 +18,13 @@ class apiClient {
             existInterceptor: Boolean
         ): T {
 
-            var clientBuilder = OkHttpClient.Builder();
+            val logging = HttpLoggingInterceptor()
+            logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
+
+            var clientBuilder = OkHttpClient.Builder().addInterceptor(logging).addInterceptor(NetworkInterceptor())
 
             if (existInterceptor) {
-                TODO("ADD INTERCEPTOR")
+                clientBuilder.addInterceptor(TokenInterceptor())
             }
 
             return Retrofit.Builder().baseUrl(baseUrl).client(clientBuilder.build())

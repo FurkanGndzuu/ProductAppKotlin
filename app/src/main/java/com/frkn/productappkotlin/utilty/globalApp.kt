@@ -16,6 +16,7 @@ class globalApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        context = applicationContext
+        context = this
+
     }
 }
