@@ -2,7 +2,7 @@ package com.frkn.productappkotlin.consts
 
 object apiConsts {
 
-    const val  authBaseUrl ="http://192.168.1.214:5001"
+    const val  authBaseUrl ="http://10.0.2.2:5001"
     const val  apiBaseUrl ="http://10.0.2.2:5000"
     const val  photoBaseUrl ="http://10.0.2.2:5002"
 

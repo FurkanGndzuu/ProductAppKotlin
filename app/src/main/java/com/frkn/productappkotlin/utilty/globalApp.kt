@@ -12,11 +12,15 @@ class globalApp : Application() {
             return context;
         }
 
+       fun getActivityContext(contextcs: Context){
+            context = contextcs
+        }
+
     }
 
     override fun onCreate() {
         super.onCreate()
-        context = this
+        context = applicationContext
 
     }
 }

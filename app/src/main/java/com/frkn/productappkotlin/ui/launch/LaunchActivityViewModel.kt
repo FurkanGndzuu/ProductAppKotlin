@@ -15,13 +15,13 @@ class LaunchActivityViewModel : ViewModel(), IViewModel {
     override var loadingSate: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
     override var errorState: MutableLiveData<error> = MutableLiveData<error>()
 
-    fun tokenCheck(context : Context): LiveData<Boolean> {
+    fun tokenCheck(): LiveData<Boolean> {
         loadingSate.value = LoadingState.Loading
         var result = MutableLiveData<Boolean>()
 
         viewModelScope.launch {
 
-            var response = TokenService.checkToken(context)
+            var response = TokenService.checkToken()
 
             result.value = response.isSuccessfull
 
