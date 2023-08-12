@@ -1,6 +1,7 @@
 package com.frkn.productappkotlin.utilty
 
 import android.content.Context
+import android.widget.Toast
 import com.frkn.productappkotlin.Exceptions.OfflineException
 import com.frkn.productappkotlin.R
 import com.frkn.productappkotlin.models.ApiResponse
@@ -9,6 +10,7 @@ import com.frkn.productappkotlin.models.error
 import com.google.gson.Gson
 import retrofit2.Response
 import java.lang.Exception
+import java.lang.StringBuilder
 
 class HelperService {
     companion object {
@@ -68,6 +70,19 @@ class HelperService {
                 globalApp.getContext().getSharedPreferences("apiToken", Context.MODE_PRIVATE)
                     .getString("token", null), Token::class.java
             )
+        }
+
+
+        fun showErrorMessageByToaster(error : error){
+            var sb :StringBuilder = StringBuilder()
+
+            for (i in error.errors){
+                sb.append(i)
+                sb.appendLine()
+            }
+
+            if(error.isShow)
+                Toast.makeText(globalApp.getContext() , sb.toString() , Toast.LENGTH_LONG).show()
         }
     }
 }

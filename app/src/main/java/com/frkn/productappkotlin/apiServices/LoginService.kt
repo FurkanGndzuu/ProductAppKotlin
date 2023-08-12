@@ -29,7 +29,7 @@ class LoginService {
                 var token = response.response!!
 
                 var signupResponse =
-                    retrofitLoginService.signUp(userSignup, "bearer ${token.accessToken}")
+                    retrofitLoginService.signUp(userSignup, "Bearer ${token.accessToken}")
 
                 if (!signupResponse.isSuccessful) return HelperService.handleApiError(signupResponse)
 

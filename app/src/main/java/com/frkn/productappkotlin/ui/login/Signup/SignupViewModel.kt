@@ -11,24 +11,24 @@ import com.frkn.productappkotlin.utilty.IViewModel
 import com.frkn.productappkotlin.utilty.LoadingState
 import kotlinx.coroutines.launch
 
-class SignupViewModel : ViewModel() , IViewModel {
+class SignupViewModel : ViewModel(), IViewModel {
     override var loadingSate: MutableLiveData<LoadingState> = MutableLiveData<LoadingState>()
     override var errorState: MutableLiveData<error> = MutableLiveData<error>()
 
 
-     fun signup(userSignup: userSignup) : LiveData<Boolean>{
-         var status = MutableLiveData<Boolean>()
+    fun signup(userSignup: userSignup): LiveData<Boolean> {
+        var status = MutableLiveData<Boolean>()
         loadingSate.value = LoadingState.Loading
-         viewModelScope.launch {
-             var response = LoginService.signUp(userSignup)
-             status.value = response.isSuccessfull
-                 if(!response.isSuccessfull)
-                 errorState.value = response.error!!
+        viewModelScope.launch {
+            var response = LoginService.signUp(userSignup)
+            status.value = response.isSuccessfull
+            if (!response.isSuccessfull && response.error != null)
+                errorState.value = response.error!!
 
-             loadingSate.value = LoadingState.Loaded
-         }
+            loadingSate.value = LoadingState.Loaded
+        }
 
-         return status
+        return status
 
     }
 }
