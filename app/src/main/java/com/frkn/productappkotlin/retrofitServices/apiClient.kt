@@ -1,6 +1,7 @@
 package com.frkn.productappkotlin.retrofitServices
 
 import com.frkn.productappkotlin.Interceptors.NetworkInterceptor
+import com.frkn.productappkotlin.Interceptors.RequestBodyInterceptor
 import com.frkn.productappkotlin.Interceptors.TokenInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,9 +20,11 @@ class apiClient {
         ): T {
 
             val logging = HttpLoggingInterceptor()
-            logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-            var clientBuilder = OkHttpClient.Builder().addInterceptor(logging).addInterceptor(NetworkInterceptor())
+            var clientBuilder =
+                OkHttpClient.Builder().addInterceptor(logging).addInterceptor(NetworkInterceptor())
+                    .addInterceptor(RequestBodyInterceptor())
 
             if (existInterceptor) {
                 clientBuilder.addInterceptor(TokenInterceptor())

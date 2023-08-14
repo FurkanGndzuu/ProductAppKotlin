@@ -26,7 +26,7 @@ class TokenInterceptor : Interceptor {
 
         if (response.code == 401) {
             if (token != null) {
-                var apiResponse = TokenService.getTokenWithRefreshToken(token.refreshToken)
+                var apiResponse = TokenService.getTokenWithRefreshToken(token.refreshToken!!)
 
                 if (apiResponse.isSuccessfull) {
                     HelperService.saveTokenSharedPreference(apiResponse.response!!)

@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import com.frkn.productappkotlin.R
 import com.frkn.productappkotlin.models.userSignup
 import com.frkn.productappkotlin.utilty.HelperService
 import com.frkn.productappkotlin.utilty.LoadingState
 import com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+import com.google.android.material.textfield.TextInputLayout
 
 class SignupFragment : Fragment() {
 
@@ -66,13 +68,13 @@ class SignupFragment : Fragment() {
         }
     }
 
-    fun signUpClicked(view : View){
-        var userName : String = view.findViewById<EditText>(R.id.text_signup_username)?.text.toString()
-        var email : String = view.findViewById<EditText>(R.id.text_signup_email)?.text.toString()
-        var password : String = view.findViewById<EditText>(R.id.text_signup_password)?.text.toString()
-        var city : String = view.findViewById<EditText>(R.id.text_signup_city)?.text.toString()
+    private fun signUpClicked(view : View){
+        var userName : String? = getView()?.findViewById<TextInputLayout>(R.id.text_signup_username)?.editText?.text.toString()
+        var email : String? = getView()?.findViewById<TextInputLayout>(R.id.text_signup_email)?.editText?.text.toString()
+        var password : String? = getView()?.findViewById<TextInputLayout>(R.id.text_signup_password)?.editText?.text.toString()
+        var city : String? = getView()?.findViewById<TextInputLayout>(R.id.text_signup_city)?.editText?.text.toString()
 
-        viewModel.signup(userSignup(userName , email , password , city))
+        viewModel.signup(userSignup(userName!! , email!! , password!! , city!!))
     }
 
 }
